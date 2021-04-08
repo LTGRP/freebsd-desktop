@@ -146,7 +146,7 @@ iniconfig () {
 		ending_line=$(($next_section - 1))
 	fi
 
-	# Make the change within the disired range
+	# Make the change within the desired range
 	# Search starts right after the section header, not including it.
 	starting_line=$(($starting_line + 1))
 	if awk "NR==${starting_line},NR==${ending_line}" $ini_config | grep -sq $ini_directive >&2; then
@@ -359,19 +359,19 @@ EOF
 pkg install -y thunderbird openjdk8 mpc-qt vlc
 
 # Install VMWare Tools (if virtual machine on VMWare)
-if [ $(pciconf -lv | grep -i vmware >/dev/null 2>/dev/null; echo $?) = "0" ]; then
-	fetch -qo - http://k.itty.cat/3 | sh
-fi
+#if [ $(pciconf -lv | grep -i vmware >/dev/null 2>/dev/null; echo $?) = "0" ]; then
+#	fetch -qo - http://k.itty.cat/3 | sh
+#fi
 
 # Install VirtualBox Addons (if virtual machine on VirtualBox)
-if [ $(pciconf -lv | grep -i virtualbox >/dev/null 2>/dev/null; echo $?) = "0" ]; then
-	# Install the drivers
-	pkg install -y emulators/virtualbox-ose-additions
-	# Enable
-	sysrc vboxguest_enable="YES" vboxservice_enable="YES"
-	# Moused doesn't work with VirtualBox
-	sysrc moused_enable="NO"
-fi
+#if [ $(pciconf -lv | grep -i virtualbox >/dev/null 2>/dev/null; echo $?) = "0" ]; then
+#	# Install the drivers
+#	pkg install -y emulators/virtualbox-ose-additions
+#	# Enable
+#	sysrc vboxguest_enable="YES" vboxservice_enable="YES"
+#	# Moused doesn't work with VirtualBox
+#	sysrc moused_enable="NO"
+#fi
 
 # All done, lets reboot into a desktop!
 reboot
